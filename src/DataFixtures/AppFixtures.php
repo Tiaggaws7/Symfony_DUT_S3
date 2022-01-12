@@ -29,26 +29,53 @@ class AppFixtures extends Fixture
         // Pour la génération de données des stages
         $titresStages = array("conception de site web", "réalisation d'une super application", "construction d'une éolienne", "réparation d'un bateau à moteur", "réalisation de fontions");
 
-        for ($i=0; $i < 5; $i++) { 
-            $fixturesStage = new Stage();
-            $fixturesStage->setTitre($titresStages[$i]);
-            $fixturesStage->setMission($faker->realText($maxNbChars = 100, $indexSize = 2));
-            $fixturesStage->setEmail($faker->freeEmail);
-    
-            $manager->persist($fixturesStage);
-        }
+        $formationsCree = array();
+        $entreprisesCree = array();
 
-        for ($i=0; $i < 5; $i++) { 
+
+        for ($i=0; $i < 10; $i++) { 
             $fixturesEntreprises = new Entreprise();
-            $fixturesEntreprises->setNom($nomEntreprises[$faker->numberBetween($min = 0, $max = 9)]);
+
+            $fixturesEntreprises->setNom($nomEntreprises[$i]);
             $fixturesEntreprises->setAdresse($faker->address);
-            $fixturesEntreprises->setActivite($differenteActivite[$faker->numberBetween($min = 0, $max = 9)]);
+            $fixturesEntreprises->setActivite($differenteActivite[$faker->numberBetween($min = 0, $max = 5)]);
             $fixturesEntreprises->setSiteWeb($faker->domainName);
+
+            $entreprisesCree[$i] = $fixturesEntreprises;
 
             $manager-> persist($fixturesEntreprises);
 
         }
 
+        for ($i=0; $i < 6; $i++) { 
+
+            $fixturesFormations = new Formation();
+            $fixturesFormations->setNomCourt($nomRaccourci[$i]);
+            $fixturesFormations->setNomLong($nomComplet[$i]);
+
+            $formationsCree[$i] = $fixturesFormations;
+
+            $manager-> persist($fixturesFormations);
+
+        }
+
+        
+        for ($i=0; $i < 5; $i++) {
+
+            $formationAlea = $faker->numberBetween($min = 0, $max = 5);
+            $entrepriseAlea = $faker->numberBetween($min = 0, $max = 9);
+
+            $fixturesStage = new Stage();
+
+            $fixturesStage->setTitre($titresStages[$i]);
+            $fixturesStage->setMission($faker->realText($maxNbChars = 100, $indexSize = 2));
+            $fixturesStage->setEmail($faker->freeEmail);  
+
+            $fixturesStage->addStagesFormation($formationsCree[$formationAlea]);
+            $fixturesStage->setEntreprisesStage($entreprisesCree[$entrepriseAlea]);
+
+            $manager->persist($fixturesStage);
+        }
 
 
 

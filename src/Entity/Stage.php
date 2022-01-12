@@ -37,7 +37,7 @@ class Stage
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="stage")
      */
-    private $stages;
+    private $EntreprisesStages;
 
     /**
      * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="stage")
@@ -90,14 +90,14 @@ class Stage
         return $this;
     }
 
-    public function getStages(): ?Entreprise
+    public function getEntreprisesStages(): ?Entreprise
     {
-        return $this->stages;
+        return $this->EntreprisesStages;
     }
 
-    public function setStages(?Entreprise $stages): self
+    public function setEntreprisesStage(?Entreprise $EntreprisesStages): self
     {
-        $this->stages = $stages;
+        $this->EntreprisesStages = $EntreprisesStages;
 
         return $this;
     }
