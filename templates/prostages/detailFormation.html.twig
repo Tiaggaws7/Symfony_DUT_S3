@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail du formation numéro {{formation.id}}{% endblock %}
+
+{% block body %}
+    <h1>{{ formation.nomLong }}</h1>
+    <p>nom court :</p>
+    <p>{{ formation.nomCourt }}</p>
+{% endblock %}

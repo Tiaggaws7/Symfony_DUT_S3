@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voici la liste des formation{% endblock %}
+
+{% block body %}
+    {% for formation in formations %}
+        <a href="{{ path('detailFormation', {id:formation.id}) }}">
+        <p> {{formation.nomLong}} </p>
+        </a>
+    {% endfor %}
+{% endblock %}

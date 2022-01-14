@@ -6,29 +6,61 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
+use App\Entity\Formation;
+use App\Entity\Entreprise;
 
 class ProstagesController extends AbstractController
 {
 
     public function index(): Response
     {
+
         return $this->render('prostages/index.html.twig', [
             'controller_name' => 'ProstagesController',
         ]);
     }
 
-    public function entreprises(): Response
+    public function listeEntreprises(): Response
     {
-        return $this->render('prostages/entreprises.html.twig', [
-            'controller_name' => 'ProstagesController',
-        ]);
+        $entreprisesRepository = $this->getDoctrine()->getRepository(Entreprise::class);
+
+        $entreprises = $entreprisesRepository->findAll();
+
+
+        return $this->render('prostages/listeEntreprises.html.twig', ['entreprises' => $entreprises]);
     }
 
-    public function formations(): Response
+    public function detailEntreprise($id): Response
     {
-        return $this->render('prostages/formations.html.twig', [
-            'controller_name' => 'ProstagesController',
-        ]);
+        // Récupérer le repository de l'entité Stage
+        $entreprisesRepository = $this->getDoctrine()->getRepository(Entreprise::class);
+
+        // Récupérer le stage qui correspond à l'id
+        $entreprise = $entreprisesRepository->find($id);
+
+        // Envoyer les données du stage récupéré à la vue chargée de l'afficher
+        return $this->render('prostages/detailEntreprise.html.twig', ['entreprise' => $entreprise]);
+    }
+
+    public function listeFormations(): Response
+    {
+        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
+
+        $formations = $formationsRepository->findAll();
+
+        return $this->render('prostages/listeFormations.html.twig', ['formations' => $formations]);
+    }
+
+    public function detailFormation($id): Response
+    {
+        // Récupérer le repository de l'entité Stage
+        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
+
+        // Récupérer le stage qui correspond à l'id
+        $formation = $formationsRepository->find($id);
+
+        // Envoyer les données du stage récupéré à la vue chargée de l'afficher
+        return $this->render('prostages/detailFormation.html.twig', ['formation' => $formation]);
     }
 
     public function listeStages(): Response
