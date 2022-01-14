@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail du stage numéro {{stage.id}}{% endblock %}
+
+{% block body %}
+    <h1>{{ stage.titre }}</h1>
+    <p>Mission :</p>
+    <p>{{ stage.mission }}</p>
+{% endblock %}

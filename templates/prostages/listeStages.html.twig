@@ -4,6 +4,8 @@
 
 {% block body %}
     {% for stage in stages %}
+        <a href="{{ path('detailStage', {id:stage.id}) }}">
         <p> {{stage.titre}} </p>
+        </a>
     {% endfor %}
 {% endblock %}
