@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voici la liste des stages{% endblock %}
+
+{% block body %}
+    {% for stage in stages %}
+        <p> {{stage.titre}} </p>
+    {% endfor %}
+{% endblock %}

@@ -10,6 +10,10 @@ formations:
   path: /formations
   controller: App\Controller\ProstagesController::formations
 
-stages:
-  path: /stages/{id}
-  controller: App\Controller\ProstagesController::stages
+listeStages:
+  path: /stages
+  controller: App\Controller\ProstagesController::listeStages
+
+detailStage:
+  path: /stage/{id}
+  controller: App\Controller\ProstagesController::detailStage
