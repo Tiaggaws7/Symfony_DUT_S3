@@ -20,33 +20,33 @@ class Entreprise
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=255)
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=255)
      */
     private $activite;
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=255)
      */
     private $siteWeb;
 
     /**
-     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="stages")
+     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="entreprise")
      */
-    private $stage;
+    private $stages;
 
     public function __construct()
     {
-        $this->stage = new ArrayCollection();
+        $this->stages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,16 +105,16 @@ class Entreprise
     /**
      * @return Collection|Stage[]
      */
-    public function getStage(): Collection
+    public function getStages(): Collection
     {
-        return $this->stage;
+        return $this->stages;
     }
 
     public function addStage(Stage $stage): self
     {
-        if (!$this->stage->contains($stage)) {
-            $this->stage[] = $stage;
-            $stage->setStages($this);
+        if (!$this->stages->contains($stage)) {
+            $this->stages[] = $stage;
+            $stage->setEntreprise($this);
         }
 
         return $this;
@@ -122,10 +122,10 @@ class Entreprise
 
     public function removeStage(Stage $stage): self
     {
-        if ($this->stage->removeElement($stage)) {
+        if ($this->stages->removeElement($stage)) {
             // set the owning side to null (unless already changed)
-            if ($stage->getStages() === $this) {
-                $stage->setStages(null);
+            if ($stage->getEntreprise() === $this) {
+                $stage->setEntreprise(null);
             }
         }
 

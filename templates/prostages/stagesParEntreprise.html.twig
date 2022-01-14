@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}stages de l'entreprise numéro {{entreprise.id}}{% endblock %}
+
+{% block body %}
+
+{% for stage in stages %}
+
+    {% if stage.EntreprisesStages.id == entreprise.id %}
+        <p>{{ stage.titre }}</p>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

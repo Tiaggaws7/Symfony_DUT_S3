@@ -4,4 +4,5 @@
 
 {% block body %}
     <h1>{{ entreprise.nom }}</h1>
+    <p>liste des stages proposés par cette entreprise: <a href="{{ path('stagesParEntreprise', {id:entreprise.id}) }}}">ici</a></p>
 {% endblock %}
