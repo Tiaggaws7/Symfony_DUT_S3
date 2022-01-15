@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
+use App\Repository\EntrepriseRepository;
+use App\Repository\StageRepository;
+use App\Repository\FormationRepository;
 
 class ProstagesController extends AbstractController
 {
@@ -24,24 +27,16 @@ class ProstagesController extends AbstractController
     //ENTREPRISES
 
 
-    public function listeEntreprises(): Response
+    public function listeEntreprises(EntrepriseRepository $entreprisesRepository): Response
     {
-        $entreprisesRepository = $this->getDoctrine()->getRepository(Entreprise::class);
-
         $entreprises = $entreprisesRepository->findAll();
 
 
         return $this->render('prostages/entreprise/listeEntreprises.html.twig', ['entreprises' => $entreprises]);
     }
 
-    public function detailEntreprise($id): Response
+    public function detailEntreprise(Entrepri): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $entreprisesRepository = $this->getDoctrine()->getRepository(Entreprise::class);
-
-        // Récupérer le stage qui correspond à l'id
-        $entreprise = $entreprisesRepository->find($id);
-
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
         return $this->render('prostages/entreprise/detailEntreprise.html.twig', ['entreprise' => $entreprise]);
     }
@@ -65,36 +60,23 @@ class ProstagesController extends AbstractController
     //FORMATIONS
 
 
-    public function listeFormations(): Response
+    public function listeFormations(FormationRepository $formationsRepository): Response
     {
-        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
-
         $formations = $formationsRepository->findAll();
 
         return $this->render('prostages/formation/listeFormations.html.twig', ['formations' => $formations]);
     }
 
-    public function detailFormation($id): Response
+    public function detailFormation(Formation $formation): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
-
-        // Récupérer le stage qui correspond à l'id
-        $formation = $formationsRepository->find($id);
-
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
         return $this->render('prostages/formation/detailFormation.html.twig', ['formation' => $formation]);
     }
 
-    public function stagesParFormation($id): Response
+    public function stagesParFormation(StageRepository $stagesRepository, Formation $formation): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $stagesRepository = $this->getDoctrine()->getRepository(Stage::class);
         // Récupérer le stage qui correspond à l'id
         $stages = $stagesRepository->findAll();
-
-        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
-        $formation = $formationsRepository->find($id);
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
         return $this->render('prostages/formation/stagesParFormation.html.twig', [ 'stages' => $stages, 'formation' => $formation]);
@@ -103,11 +85,8 @@ class ProstagesController extends AbstractController
     //STAGES
 
 
-    public function listeStages(): Response
+    public function listeStages(StageRepository $stagesRepository): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $stagesRepository = $this->getDoctrine()->getRepository(Stage::class);
-
         // Récupérer les stages enregistrés en BD
 
         $stages = $stagesRepository->findAll();
@@ -116,25 +95,15 @@ class ProstagesController extends AbstractController
         return $this->render('prostages/stage/listeStages.html.twig', ['stages' => $stages]);
     }
 
-    public function detailStage($id): Response
+    public function detailStage(Stage $stage): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $stagesRepository = $this->getDoctrine()->getRepository(Stage::class);
-
-        // Récupérer le stage qui correspond à l'id
-        $stage = $stagesRepository->find($id);
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
         return $this->render('prostages/stage/detailStage.html.twig', ['stage' => $stage]);
     }
 
-    public function formationsParStage($id): Response
+    public function formationsParStage(Stage $stage): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $stagesRepository = $this->getDoctrine()->getRepository(Stage::class);
-        // Récupérer le stage qui correspond à l'id
-        $stage = $stagesRepository->find($id);
-
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
         return $this->render('prostages/stage/formationsParStage.html.twig', [ 'stage' => $stage]);
     }
