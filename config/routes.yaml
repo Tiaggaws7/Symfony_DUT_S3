@@ -33,3 +33,7 @@ listeStages:
 detailStage:
   path: /stage/{id}
   controller: App\Controller\ProstagesController::detailStage
+
+formationsParStage:
+  path: /formations_stage/{id}
+  controller: App\Controller\ProstagesController::formationsParStage

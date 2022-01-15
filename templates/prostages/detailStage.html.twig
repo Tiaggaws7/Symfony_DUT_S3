@@ -6,4 +6,5 @@
     <h1>{{ stage.titre }}</h1>
     <p>Mission :</p>
     <p>{{ stage.mission }}</p>
+    <p>Retrouvez <a href="{{ path('formationsParStage', {id:stage.id}) }} " >ici</a> toute les formations pour ce stage</p>
 {% endblock %}

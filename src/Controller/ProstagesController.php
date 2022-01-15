@@ -86,7 +86,6 @@ class ProstagesController extends AbstractController
         return $this->render('prostages/detailFormation.html.twig', ['formation' => $formation]);
     }
 
-
     //STAGES
 
 
@@ -113,5 +112,19 @@ class ProstagesController extends AbstractController
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
         return $this->render('prostages/detailStage.html.twig', ['stage' => $stage]);
+    }
+
+    public function formationsParStage($id): Response
+    {
+        // Récupérer le repository de l'entité Stage
+        $stagesRepository = $this->getDoctrine()->getRepository(Stage::class);
+        // Récupérer le stage qui correspond à l'id
+        $stage = $stagesRepository->find($id);
+
+        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
+        $formations = $formationsRepository->findAll();
+
+        // Envoyer les données du stage récupéré à la vue chargée de l'afficher
+        return $this->render('prostages/formationsParStage.html.twig', [ 'stage' => $stage, 'formations' => $formations]);
     }
 }
