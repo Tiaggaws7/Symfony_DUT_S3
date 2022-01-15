@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'lesListesDEntreprises.html.twig' %}
 
-{% block title %}Voici la liste des entreprises{% endblock %}
+{% block title %}Liste des entreprises{% endblock %}
 
-{% block body %}
+{% block table %}
     {% for entreprise in entreprises %}
-        <a href="{{ path('detailEntreprise', {id:entreprise.id}) }}">
-        <p> {{entreprise.nom}} </p>
-        </a>
+        <tr>
+            <th scope="row"> {{ entreprise.id }} </th>
+            <td> <a href="{{ path('detailEntreprise', {id:entreprise.id}) }}"> {{ entreprise.nom }} </a></td>
+            <td>{{ entreprise.adresse }}</td>
+            <td>{{ entreprise.activite }}</td>
+            <td>{{ entreprise.siteWeb }}</td>
+        </tr>
     {% endfor %}
 {% endblock %}
