@@ -1,14 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'lesListesDeStages.html.twig' %}
 
 {% block title %}stages de l'entreprise numéro {{entreprise.id}}{% endblock %}
 
-{% block body %}
+{% block table %}
 
-{% for stage in stages %}
+    {% for stage in stages %}
 
-    {% if stage.EntreprisesStages.id == entreprise.id %}
-        <p>{{ stage.titre }}</p>
-    {% endif %}
-{% endfor %}
+        {% if stage.EntreprisesStages.id == entreprise.id %}
+            <tr>
+            <th scope="row"> {{ stage.id }} </th>
+            <td> <a href="{{ path('detailStage', {id:stage.id}) }}"> {{ stage.titre }} </a></td>
+            <td>{{ stage.mission }}</td>
+            <td>{{ stage.email }}</td> 
+        </tr>
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}

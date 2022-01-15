@@ -1,11 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'lesListesDeFormations.html.twig' %}
 
-{% block title %}Voici la liste des formation{% endblock %}
+{% block title %}Liste des formations{% endblock %}
 
-{% block body %}
+{% block table %}
+
     {% for formation in formations %}
-        <a href="{{ path('detailFormation', {id:formation.id}) }}">
-        <p> {{formation.nomLong}} </p>
-        </a>
+        <tr>
+            <th scope="row"> {{ formation.id }} </th>
+            <td> <a href="{{ path('detailFormation', {id:formation.id}) }}"> {{ formation.nomLong }} </a></td>
+            <td>{{ formation.nomCourt }}</td>
+        </tr>
     {% endfor %}
 {% endblock %}
