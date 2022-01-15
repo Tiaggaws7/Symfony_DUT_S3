@@ -35,20 +35,14 @@ class ProstagesController extends AbstractController
         return $this->render('prostages/entreprise/listeEntreprises.html.twig', ['entreprises' => $entreprises]);
     }
 
-    public function detailEntreprise(Entrepri): Response
+    public function detailEntreprise(Entreprise $entreprise): Response
     {
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
         return $this->render('prostages/entreprise/detailEntreprise.html.twig', ['entreprise' => $entreprise]);
     }
 
-    public function stagesParEntreprise($id): Response
+    public function stagesParEntreprise(Entreprise $entreprise, StageRepository $stagesRepository): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $entreprisesRepository = $this->getDoctrine()->getRepository(Entreprise::class);
-        // Récupérer le stage qui correspond à l'id
-        $entreprise = $entreprisesRepository->find($id);
-
-        $stagesRepository = $this->getDoctrine()->getRepository(Stage::class);
         $stages = $stagesRepository->findAll();
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
