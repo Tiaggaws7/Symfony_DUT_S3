@@ -25,6 +25,13 @@ detailFormation:
   path: /formation/{id}
   controller: App\Controller\ProstagesController::detailFormation
 
+stagesParFormation:
+  path: /stages_formation/{id}
+  controller: App\Controller\ProstagesController::stagesParFormation
+
+
+
+
 
 listeStages:
   path: /stages

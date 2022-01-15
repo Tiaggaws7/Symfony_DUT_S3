@@ -31,7 +31,7 @@ class ProstagesController extends AbstractController
         $entreprises = $entreprisesRepository->findAll();
 
 
-        return $this->render('prostages/listeEntreprises.html.twig', ['entreprises' => $entreprises]);
+        return $this->render('prostages/entreprise/listeEntreprises.html.twig', ['entreprises' => $entreprises]);
     }
 
     public function detailEntreprise($id): Response
@@ -43,7 +43,7 @@ class ProstagesController extends AbstractController
         $entreprise = $entreprisesRepository->find($id);
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
-        return $this->render('prostages/detailEntreprise.html.twig', ['entreprise' => $entreprise]);
+        return $this->render('prostages/entreprise/detailEntreprise.html.twig', ['entreprise' => $entreprise]);
     }
 
     public function stagesParEntreprise($id): Response
@@ -57,7 +57,7 @@ class ProstagesController extends AbstractController
         $stages = $stagesRepository->findAll();
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
-        return $this->render('prostages/stagesParEntreprise.html.twig', ['entreprise' => $entreprise, 'stages' => $stages]);
+        return $this->render('prostages/entreprise/stagesParEntreprise.html.twig', ['entreprise' => $entreprise, 'stages' => $stages]);
     }
 
 
@@ -71,7 +71,7 @@ class ProstagesController extends AbstractController
 
         $formations = $formationsRepository->findAll();
 
-        return $this->render('prostages/listeFormations.html.twig', ['formations' => $formations]);
+        return $this->render('prostages/formation/listeFormations.html.twig', ['formations' => $formations]);
     }
 
     public function detailFormation($id): Response
@@ -83,7 +83,21 @@ class ProstagesController extends AbstractController
         $formation = $formationsRepository->find($id);
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
-        return $this->render('prostages/detailFormation.html.twig', ['formation' => $formation]);
+        return $this->render('prostages/formation/detailFormation.html.twig', ['formation' => $formation]);
+    }
+
+    public function stagesParFormation($id): Response
+    {
+        // Récupérer le repository de l'entité Stage
+        $stagesRepository = $this->getDoctrine()->getRepository(Stage::class);
+        // Récupérer le stage qui correspond à l'id
+        $stages = $stagesRepository->findAll();
+
+        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
+        $formation = $formationsRepository->find($id);
+
+        // Envoyer les données du stage récupéré à la vue chargée de l'afficher
+        return $this->render('prostages/formation/stagesParFormation.html.twig', [ 'stages' => $stages, 'formation' => $formation]);
     }
 
     //STAGES
@@ -99,7 +113,7 @@ class ProstagesController extends AbstractController
         $stages = $stagesRepository->findAll();
 
         // Envoyer les données récupérés à la vue chargée de les afficher
-        return $this->render('prostages/listeStages.html.twig', ['stages' => $stages]);
+        return $this->render('prostages/stage/listeStages.html.twig', ['stages' => $stages]);
     }
 
     public function detailStage($id): Response
@@ -111,7 +125,7 @@ class ProstagesController extends AbstractController
         $stage = $stagesRepository->find($id);
 
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
-        return $this->render('prostages/detailStage.html.twig', ['stage' => $stage]);
+        return $this->render('prostages/stage/detailStage.html.twig', ['stage' => $stage]);
     }
 
     public function formationsParStage($id): Response
@@ -121,10 +135,7 @@ class ProstagesController extends AbstractController
         // Récupérer le stage qui correspond à l'id
         $stage = $stagesRepository->find($id);
 
-        $formationsRepository = $this->getDoctrine()->getRepository(Formation::class);
-        $formations = $formationsRepository->findAll();
-
         // Envoyer les données du stage récupéré à la vue chargée de l'afficher
-        return $this->render('prostages/formationsParStage.html.twig', [ 'stage' => $stage, 'formations' => $formations]);
+        return $this->render('prostages/stage/formationsParStage.html.twig', [ 'stage' => $stage]);
     }
 }

@@ -6,4 +6,5 @@
     <h1>{{ formation.nomLong }}</h1>
     <p>nom court :</p>
     <p>{{ formation.nomCourt }}</p>
+    <p>liste des stages proposés par cette formation: <a href="{{ path('stagesParFormation', {id:formation.id}) }}}">ici</a></p>
 {% endblock %}
