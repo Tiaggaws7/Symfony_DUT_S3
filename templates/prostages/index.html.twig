@@ -10,12 +10,14 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Bienvenue à l'accueil ! ✅</h1>
+    <h1>Bienvenue sur Prostages ! ✅</h1>
 
-    This friendly message is coming from:
+    <h4>Ce site vous permettra de consulter :</h4>
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Temp/symfony/Symfony_DUT_S3/src/Controller/ProstagesController.php'|file_link(0) }}">src/Controller/ProstagesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Temp/symfony/Symfony_DUT_S3/templates/prostages/index.html.twig'|file_link(0) }}">templates/prostages/index.html.twig</a></code></li>
+        <li><a href="{{ path('listeStages') }}">La liste des stages</a></li>
+        <li><a href="{{ path('listeEntreprises') }}">La liste des entreprises</a></li>
+        <li><a href="{{ path('listeFormations') }}">La liste des formations</a></li>
+        <li>Et bien d'autres encore...</li>
     </ul>
 </div>
 {% endblock %}

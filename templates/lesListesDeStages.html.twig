@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Mission</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% block table %}
+
+        {% endblock %}
+        </tbody>
+    </table>
+{% endblock %}

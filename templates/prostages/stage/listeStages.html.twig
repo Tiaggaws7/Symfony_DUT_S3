@@ -1,11 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'lesListesDeStages.html.twig' %}
 
-{% block title %}Voici la liste des stages{% endblock %}
+{% block title %}Liste des stages{% endblock %}
 
-{% block body %}
-    {% for stage in stages %}
-        <a href="{{ path('detailStage', {id:stage.id}) }}">
-        <p> {{stage.titre}} </p>
-        </a>
-    {% endfor %}
+{% block table %}
+        {% for stage in stages %}
+            
+            <tr>
+            <th scope="row"> {{ stage.id }} </th>
+            <td> <a href="{{ path('detailStage', {id:stage.id}) }}"> {{ stage.titre }} </a></td>
+            <td>{{ stage.mission }}</td>
+            <td>{{ stage.email }}</td> 
+            </tr>
+            </a>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
