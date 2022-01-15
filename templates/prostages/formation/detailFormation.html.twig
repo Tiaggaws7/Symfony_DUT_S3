@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Detail du formation numéro {{formation.id}}{% endblock %}
+{% block title %}Detail de {{formation.nomCourt}}{% endblock %}
 
 {% block body %}
-    <h1>{{ formation.nomLong }}</h1>
-    <p>nom court :</p>
-    <p>{{ formation.nomCourt }}</p>
-    <p>liste des stages proposés par cette formation: <a href="{{ path('stagesParFormation', {id:formation.id}) }}}">ici</a></p>
+    <h1 class="text-center">{{ formation.nomLong }}</h1>
+    <h4 class="text-center">Liste des <a href="{{ path('stagesParFormation', {id:formation.id}) }}}">stages</a> proposés pour {{ formation.nomCourt }}</h4>
 {% endblock %}
