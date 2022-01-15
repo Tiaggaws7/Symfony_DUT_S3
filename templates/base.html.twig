@@ -14,35 +14,38 @@
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
-    <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
-                </ul>
-            </div>
+    <header/>
+    {% block header %}
+    {#<nav class="navbar sticky-top navbar-dark bg-dark">#}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ path('prostages_accueil') }}">Prostages</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('listeStages') }}">Stages </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('listeEntreprises') }}">Entreprises</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ path('listeFormations') }}">Formations</a>
+                </li>
+            </ul>
         </div>
     </nav>
+    {% endblock %}
     </header>
     <body>
-        
-
         {% block body %}{% endblock %}
     </body>
+    <footer>
+        <div class="container bg-dark">
+            <p class="m-0 text-center text-white">Site réalisé par Tiago Buil</p>
+        </div>
+    {% block footer %}{% endblock %}
+    </footer>
 </html>
