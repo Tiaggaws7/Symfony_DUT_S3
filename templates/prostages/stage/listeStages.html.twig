@@ -3,16 +3,16 @@
 {% block title %}Liste des stages{% endblock %}
 
 {% block table %}
-        {% for stage in stages %}
+    
+    {% for stage in stages %}
             
-            <tr>
+        <tr>
             <th scope="row"> {{ stage.id }} </th>
             <td> <a href="{{ path('detailStage', {id:stage.id}) }}"> {{ stage.titre }} </a></td>
             <td>{{ stage.mission }}</td>
             <td>{{ stage.email }}</td> 
-            </tr>
-            </a>
-        {% endfor %}
-        </tbody>
-    </table>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

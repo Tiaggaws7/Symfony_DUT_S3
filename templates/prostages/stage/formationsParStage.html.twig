@@ -1,13 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'lesListesDeFormations.html.twig' %}
 
-{% block title %}stage numéro {{stage.id}}{% endblock %}
+{% block title %}formations pour {{stage.titre}}{% endblock %}
 
-{% block body %}
+{% block table %}
 
-{% for formation in stage.stagesFormation %}
+    {% for formation in stage.stagesFormation %}
 
-    <p>{{ formation.nomLong }}</p>
-
-{% endfor %}
+        <tr>
+            <th scope="row"> {{ formation.id }} </th>
+            <td> <a href="{{ path('detailFormation', {id:formation.id}) }}"> {{ formation.nomLong }} </a></td>
+            <td>{{ formation.nomCourt }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}
